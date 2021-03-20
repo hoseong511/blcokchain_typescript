@@ -9,7 +9,7 @@
   yarn add typescript # yarn global add typescript
   mv tsconfig.json
   ```
-  tsconfig.json 파일 셋팅 ( <p style="font-size:14px">todo: tsconfig.json 문서 확인하기</p>)
+  tsconfig.json 파일 셋팅 ( <span style="font-size:14px">todo: tsconfig.json 문서 확인하기</span>)
   ```json
   {
     "compileOptions":{

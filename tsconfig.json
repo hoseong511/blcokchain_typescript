@@ -1,0 +1,9 @@
+{
+  "compileOptions":{
+  "module": "commaonjs",
+  "target": "ES2016",
+  "sourceMap":true
+  },
+  "include": ["index.ts"],
+  "exclude": ["node_module"]
+}
