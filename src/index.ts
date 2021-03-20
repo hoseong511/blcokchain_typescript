@@ -71,6 +71,12 @@ const createNewBlock = (data:string): Block =>{
 const isBlockValid = (candidateBlock : Block, previousBlock: Block) : boolean => {
   if(!Block.validateStructure(candidateBlock)){
     return false;
+  } else if(previousBlock.index + 1 !== candidateBlock.index){
+    return false;
+  } else if(previousBlock.hash !== candidateBlock.hash){
+    return false;
+  } else if(){
+    
   }
 }
 
