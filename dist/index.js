@@ -1,6 +1,11 @@
-const name1 = "hoho", age = 2911, gender = "male";
-const sayHi = (a, b, c) => {
-    return `Hello ${a}!! you are ${b} years old! you are ${c}!`;
+const person = {
+    name: "hoho12",
+    age: 29,
+    gender: "male",
 };
-console.log(sayHi(name1, age, gender));
+const sayHi = (a) => {
+    return `Hello ${a.name}!! you are ${a.age} years old! you are ${a.gender}!`;
+};
+const name1 = "hoho", age = 2911, gender = "male";
+console.log(sayHi(person));
 //# sourceMappingURL=index.js.map

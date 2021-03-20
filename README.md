@@ -12,7 +12,7 @@
   tsconfig.json 파일 셋팅 ( <span style="font-size:14px">todo: tsconfig.json 문서 확인하기</span>)
   ```json
   {
-    "compileOptions":{
+    "compilerOptions":{ //compileOptions라고 되어있어서 compile뒤에 r을 추가함
     "module": "commaonjs",
     "target": "ES2016",
     "sourceMap":true
@@ -32,4 +32,28 @@
     ```
     - tsc는 js로 컴파일하는 명령어이다.
     - node.js 는 TypeScript를 이해하지 못하기 때문에 javaScript 코드로 컴파일하는 작업을 거친다.
+    - 매번 코드를 수정할때 마다 yarn start라는 과정을 안하게 해줄 tsc-watch 설치
+      ```sh
+      yarn global add tsc-watch --dev
+      npm link typescript
+      ```
+      그리고 tsconfig.json 및 package.json수정
+      ```json
+      // tsconfig.json
+      { 
+        "compilerOptions":{
+        "module": "commonjs",
+        "target": "ES2016",
+        "sourceMap":true,
+        "outDir": "dist"
+        },
+        "include": ["src/**/*"],
+        "exclude": ["node_modules"]
+      }
+
+      //package.json
+      "scripts": {
+        "start": "tsc-watch --onSuccess \"node dist/index.js\" "
+      },
+      ```
     
