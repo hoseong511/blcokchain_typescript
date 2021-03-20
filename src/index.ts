@@ -1,38 +1,65 @@
-class Human {
-  public name: string ;
-  private age: number = 100;
-  public gender: string;
-  constructor(name: string, gender?:string){
-    this.name =name;    
-    this.gender = gender;
-  }
+import * as CryptoJS from "crypto-js";
 
-  
-  public get getAge() : number {
-    return this.age;
-  }
-  
+class Block {
+  public index:number;
+  public hash:string;
+  public previoushash:string;
+  public data:string;
+  public timestamp:number;
+
+  // 객체가 생성되지 않아도 실행될 스태틱메서드!
+  static claculateBlockhash = (
+    index:number,
+     previoushash: string, timestamp: number, 
+     data: string): string =>
+     CryptoJS.SHA256(index + previoushash + timestamp + data).toString();
+
+  constructor(
+    index:number,
+    hash:string,
+    previoushash:string,
+    data:string,
+    timestamp:number){
+      this.index=index;
+      this.hash = hash;
+      this.previoushash = previoushash;
+      this.data = data;
+      this.timestamp = timestamp;
+    }
 }
 
-const ho = new Human("hoho" )
+const genesisBlock:Block = new Block(0, "2020202020", "", "Hello", 123456);
 
-const person = {
-  name: "hoho12",
-  age: 29,
-  gender: "male",
-}
+let blockchain: Block[] = [genesisBlock];
 
-const sayHi = (a:Human):string =>{
-  return `Hello ${a.name}!! you are ${a.getAge} years old! you are ${a.gender}!`;  
+console.log(blockchain);
+
+const getBlockchain = (): Block[] => blockchain;
+
+const getLatesBlock = (): Block => blockchain[blockchain.length -1];
+
+const getNewTimeStamp = (): number => Math.round(new Date().getTime()/ 1000);
+
+const createNewBlock = (data:string): Block =>{
+  const previousBlock: Block = getLatesBlock();
+  const newIndex : number = previousBlock.index + 1;
+  const newTimestamp :number =getNewTimeStamp();
+  const newhash : string = Block.claculateBlockhash(
+    newIndex, 
+    previousBlock.hash, 
+    newTimestamp, 
+    data
+    );  
+  const newblock : Block = new Block(
+    newIndex, 
+    newhash,
+    previousBlock.hash,
+    data,
+    newTimestamp
+    );
+    return newblock;
 };
 
-const name1 = "hoho",
-      age = 2911,
-      gender = "male";
-
-ho.name ="hohoho"
-console.log(ho.getAge);
-
-console.log(sayHi(ho));
+console.log(createNewBlock("hello"), createNewBlock("hi"));
 
 

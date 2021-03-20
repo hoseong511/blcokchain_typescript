@@ -6,7 +6,9 @@
   "repository": "https://github.com/hoseong511/blcokchain_typescript.git",
   "author": "hoseong511 <thdghtjd115@naver.com>",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "crypto-js": "^4.0.0"
+  },
   "scripts": {
     "start": "tsc-watch --onSuccess \"node dist/index.js\" "
   },
