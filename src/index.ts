@@ -1,8 +1,20 @@
-interface Human {
-  name:string,
-  age:number,
-  gender:string
+class Human {
+  public name: string ;
+  private age: number = 100;
+  public gender: string;
+  constructor(name: string, gender?:string){
+    this.name =name;    
+    this.gender = gender;
+  }
+
+  
+  public get getAge() : number {
+    return this.age;
+  }
+  
 }
+
+const ho = new Human("hoho" )
 
 const person = {
   name: "hoho12",
@@ -11,13 +23,16 @@ const person = {
 }
 
 const sayHi = (a:Human):string =>{
-  return `Hello ${a.name}!! you are ${a.age} years old! you are ${a.gender}!`;  
+  return `Hello ${a.name}!! you are ${a.getAge} years old! you are ${a.gender}!`;  
 };
 
 const name1 = "hoho",
       age = 2911,
       gender = "male";
 
-console.log(sayHi(person));
+ho.name ="hohoho"
+console.log(ho.getAge);
+
+console.log(sayHi(ho));
 
 
