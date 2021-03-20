@@ -1,9 +1,10 @@
 {
-  "compileOptions":{
-  "module": "commaonjs",
+  "compilerOptions":{
+  "module": "commonjs",
   "target": "ES2016",
-  "sourceMap":true
+  "sourceMap":true,
+  "outDir": "dist"
   },
-  "include": ["index.ts"],
-  "exclude": ["node_module"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }
