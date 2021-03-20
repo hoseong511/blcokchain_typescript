@@ -3,11 +3,10 @@ const name1 = "hoho",
       age = 2911,
       gender = "male";
 
-const sayHi = (a, b, c?) =>{
-  console.log(`Hello ${a}!! you are ${b} years old! you are ${c}! `);  
+const sayHi = (a:string, b:number, c?:string):string =>{
+  return `Hello ${a}!! you are ${b} years old! you are ${c}!`;  
 };
 
-sayHi(name1,age, gender);
+console.log(sayHi(name1,age, gender));
 
-export {};
 
