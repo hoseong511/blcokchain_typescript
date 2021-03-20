@@ -1,18 +1,26 @@
 import * as CryptoJS from "crypto-js";
 
 class Block {
+  // 객체가 생성되지 않아도 실행될 스태틱메서드!
+  static claculateBlockhash = (
+    index:number,
+    previoushash: string,
+    timestamp: number, 
+    data: string): string =>
+     CryptoJS.SHA256(index + previoushash + timestamp + data).toString();
+
+  static validateStructure = (aBlock: Block) : boolean => 
+    typeof aBlock.index === "number" && 
+    typeof aBlock.hash === "string" && 
+    typeof aBlock.previoushash === "string"&&
+    typeof aBlock.timestamp === "number" &&
+    typeof aBlock.data === "string";
+
   public index:number;
   public hash:string;
   public previoushash:string;
   public data:string;
   public timestamp:number;
-
-  // 객체가 생성되지 않아도 실행될 스태틱메서드!
-  static claculateBlockhash = (
-    index:number,
-     previoushash: string, timestamp: number, 
-     data: string): string =>
-     CryptoJS.SHA256(index + previoushash + timestamp + data).toString();
 
   constructor(
     index:number,
@@ -60,6 +68,10 @@ const createNewBlock = (data:string): Block =>{
     return newblock;
 };
 
-console.log(createNewBlock("hello"), createNewBlock("hi"));
+const isBlockValid = (candidateBlock : Block, previousBlock: Block) : boolean => {
+  if(!Block.validateStructure(candidateBlock)){
+    return false;
+  }
+}
 
 

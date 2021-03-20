@@ -12,6 +12,11 @@ class Block {
 }
 // 객체가 생성되지 않아도 실행될 스태틱메서드!
 Block.claculateBlockhash = (index, previoushash, timestamp, data) => CryptoJS.SHA256(index + previoushash + timestamp + data).toString();
+Block.validateStructure = (aBlock) => typeof aBlock.index === "number" &&
+    typeof aBlock.hash === "string" &&
+    typeof aBlock.previoushash === "string" &&
+    typeof aBlock.timestamp === "number" &&
+    typeof aBlock.data === "string";
 const genesisBlock = new Block(0, "2020202020", "", "Hello", 123456);
 let blockchain = [genesisBlock];
 console.log(blockchain);
@@ -26,5 +31,9 @@ const createNewBlock = (data) => {
     const newblock = new Block(newIndex, newhash, previousBlock.hash, data, newTimestamp);
     return newblock;
 };
-console.log(createNewBlock("hello"), createNewBlock("hi"));
+const isBlockValid = (candidateBlock, previousBlock) => {
+    if (!Block.validateStructure(candidateBlock)) {
+        return false;
+    }
+};
 //# sourceMappingURL=index.js.map
